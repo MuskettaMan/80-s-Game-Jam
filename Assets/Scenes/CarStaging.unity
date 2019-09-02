@@ -379,7 +379,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499963999}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbfea5c623383974c8c2a5ff1b321d8b, type: 3}
   m_Name: 
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499963999}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bde9389e88def7547b77adf8d0857f51, type: 3}
   m_Name: 
@@ -429,7 +429,8 @@ MonoBehaviour:
     steering: 0
   maxMotorTorque: 400
   maxSteeringAngle: 30
-  defaultSpeed: 50
+  defaultSpeed: 0.6
+  steeringStrength: 0.3
 --- !u!54 &1499964003
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -490,6 +491,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1499964001}
     m_Modifications:
+    - target: {fileID: 1081292818242753743, guid: 63b1d7f743fd3264aa855ef1f3502e10,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
+      objectReference: {fileID: 0}
     - target: {fileID: 9068453259821694665, guid: 63b1d7f743fd3264aa855ef1f3502e10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -574,6 +580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333692190332920201, guid: 63b1d7f743fd3264aa855ef1f3502e10,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63b1d7f743fd3264aa855ef1f3502e10, type: 3}

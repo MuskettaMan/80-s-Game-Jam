@@ -7,7 +7,8 @@ public class SimpleCarController : MonoBehaviour {
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
-    public float defaultSpeed = 10;
+    public float defaultSpeed = .3f;
+    public float steeringStrength = .3f;
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider) {
         if (collider.transform.childCount == 0) {
@@ -27,8 +28,8 @@ public class SimpleCarController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        float motor = maxMotorTorque * Input.GetAxis("Vertical") + defaultSpeed;
-        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+        float motor = maxMotorTorque * (Input.GetAxis("Vertical") + defaultSpeed);
+        float steering = maxSteeringAngle * (Input.GetAxis("Horizontal") * steeringStrength);
 
         foreach (AxleInfo axleInfo in axleInfos) {
             if (axleInfo.steering) {
