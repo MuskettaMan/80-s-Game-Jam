@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3514430502483256054}
   - component: {fileID: 3514430502483256055}
   - component: {fileID: 3514430502483256052}
+  - component: {fileID: 7593135005263524990}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -48,9 +49,9 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: 0, y: 0, z: 200}
-      - {x: 0, y: 0, z: 148.5}
-      - {x: 0, y: 0, z: 45.5}
-      - {x: 0, y: 0, z: -6}
+      - {x: 0, y: 0, z: 150}
+      - {x: 0, y: 0, z: 50}
+      - {x: 0, y: 0, z: 0}
       isClosed: 0
       space: 2
       controlMode: 3
@@ -106,3 +107,16 @@ MonoBehaviour:
   undersideMaterial: {fileID: 2100000, guid: c1d8d882244c5344fa86a8fd23246f81, type: 2}
   textureTiling: 23.93
   meshHolder: {fileID: 0}
+--- !u!65 &7593135005263524990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514430502483256053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.36, y: 0.01, z: 200}
+  m_Center: {x: 0, y: 0, z: 100}
