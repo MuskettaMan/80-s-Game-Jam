@@ -10,6 +10,7 @@ public class Car : MonoBehaviour {
     [SerializeField] private float defaultSpeed = 10;
     [SerializeField] private float acceleratedSpeed = 15;
     [SerializeField] private float deceleratedSpeed = 5;
+    [SerializeField] private float accelerationSpeed = 3;
 
     [SerializeField] private float currentSpeed;
     #endregion
@@ -21,11 +22,11 @@ public class Car : MonoBehaviour {
 
     void Update() {
         if (Input.GetKey(KeyCode.W)) {
-            currentSpeed = acceleratedSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, acceleratedSpeed, Time.deltaTime * accelerationSpeed);
         } else if (Input.GetKey(KeyCode.S)) {
-            currentSpeed = deceleratedSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, deceleratedSpeed, Time.deltaTime * accelerationSpeed);
         } else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
-            currentSpeed = defaultSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, defaultSpeed, Time.deltaTime * accelerationSpeed);
         }
 
         transform.localPosition += transform.forward * currentSpeed * Time.deltaTime; 
