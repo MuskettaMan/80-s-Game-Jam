@@ -11,15 +11,15 @@ public class ObstacleSpawner : MonoBehaviour {
     [SerializeField] private float spawnTimeInterval;
     [SerializeField] private Transform target;
     [SerializeField] private float distanceBetweenPaths;
-
-    private List<GameObject> spawnedObstacles;
+    
     private float timer = 0;
     private CarMove car;
+
+    private int spawnCounter = 3;
     #endregion
 
     #region Unity Methods
     private void Start() {
-        spawnedObstacles = new List<GameObject>();
         car = target.GetComponent<CarMove>();
     }
 
@@ -28,8 +28,10 @@ public class ObstacleSpawner : MonoBehaviour {
         pos.z = target.position.z;
         transform.position = pos + new Vector3(0, 0, 100);
 
+        spawnTimeInterval -= 0.0007f;
+
         timer += Time.deltaTime;
-        if (timer * car.currentSpeed >= spawnTimeInterval) {
+        if (timer >= spawnTimeInterval) {
             timer -= spawnTimeInterval;
 
             if (Time.time < 20) {
@@ -50,22 +52,22 @@ public class ObstacleSpawner : MonoBehaviour {
 
     private void InstantiateObstacle(bool twice) {
         var clone = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)]);
-        clone.transform.position = transform.position;
+        clone.transform.position = new Vector3(0, 0, spawnCounter * 100);
         int random = Random.Range(-1, 2);
         clone.transform.position += new Vector3(distanceBetweenPaths * random, .5f, 0);
+        Destroy(clone, 60);
 
-        spawnedObstacles.Add(clone);
         if (twice) {
             var anotherClone = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)]);
-            anotherClone.transform.position = transform.position;
+            anotherClone.transform.position = new Vector3(0, 0, spawnCounter * 100);
             int anotherRandom;
             do {
                 anotherRandom = Random.Range(-1, 2);
             } while (anotherRandom == random);
             anotherClone.transform.position += new Vector3(distanceBetweenPaths * anotherRandom, .5f, 0);
-
-            spawnedObstacles.Add(anotherClone);
+            Destroy(anotherClone, 60);
         }
+        spawnCounter++;
     }
     #endregion
 }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CarMove : MonoBehaviour {
     #region Public Fields
     public float boostGauge = 0.0f;
     public float currentSpeed;
+    public bool canMove = true;
     #endregion
 
     #region Private Fields
@@ -19,6 +21,7 @@ public class CarMove : MonoBehaviour {
     [SerializeField] private float boostGaugeDecrease = 0.1f;
     [SerializeField] private float distanceBetweenPaths;
     [SerializeField] private Image boostGaugeUI;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private Rigidbody rb;
     private Vector3 targetPosition;
@@ -26,6 +29,8 @@ public class CarMove : MonoBehaviour {
     private bool boosting = false;
 
     private float defaultFov;
+    private float score = 0;
+    private float scoreToDisplay = 0;
     #endregion
 
     #region Unity Methods
@@ -35,6 +40,11 @@ public class CarMove : MonoBehaviour {
     }
 
     void Update() {
+        if (!canMove)
+            return;
+
+        score += 5;
+
         if ((Input.GetKey(KeyCode.W) || Input.GetButton("Fire7")) && !boosting) {
             currentSpeed = Mathf.Lerp(currentSpeed, acceleratedSpeed, Time.deltaTime * accelerationSpeed);
         } else if ((Input.GetKey(KeyCode.S) || Input.GetButton("Fire6")) && !boosting) {
@@ -47,6 +57,7 @@ public class CarMove : MonoBehaviour {
         boostGaugeUI.fillAmount = boostGauge;
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Fire2")) && boostGauge >= 1) {
             boosting = true;
+            score += 1000;
         }
 
         if (boosting) {
@@ -77,6 +88,9 @@ public class CarMove : MonoBehaviour {
         rb.MovePosition(targetPosition);
 
         Camera.main.fieldOfView = defaultFov + currentSpeed * 0.5f - 10;
+
+        scoreToDisplay = Mathf.Lerp(scoreToDisplay, score, Time.deltaTime * 5);
+        scoreText.text = "Score: " + (int)scoreToDisplay;
     }
     #endregion
 
