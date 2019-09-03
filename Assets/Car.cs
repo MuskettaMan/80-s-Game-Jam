@@ -12,13 +12,16 @@ public class Car : MonoBehaviour {
     [SerializeField] private float deceleratedSpeed = 5;
     [SerializeField] private float accelerationSpeed = 3;
     [SerializeField] private float currentSpeed;
-    [SerializeField] private float turnAngle = 1;
-    [SerializeField] private float turnSpeed = 3;
+    [SerializeField] private float distanceBetweenPaths;
+
+    private Rigidbody rb;
+    private Vector3 targetPosition;
+    private int targetPath = 0;
     #endregion
 
     #region Unity Methods
     void Start() {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update() {
@@ -30,13 +33,19 @@ public class Car : MonoBehaviour {
             currentSpeed = Mathf.Lerp(currentSpeed, defaultSpeed, Time.deltaTime * accelerationSpeed);
         }
 
-        transform.localPosition += transform.forward * currentSpeed * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.A)) {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, -turnAngle, 0), Time.deltaTime * turnSpeed);
-        } else if (Input.GetKey(KeyCode.D)) {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, turnAngle, 0), Time.deltaTime * turnSpeed);
+        if (Input.GetKeyDown(KeyCode.A)) {
+            targetPath--;
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            targetPath++;
         }
+
+        targetPath = Mathf.Clamp(targetPath, -1, 1);
+
+        targetPosition = rb.position;
+        targetPosition.z += currentSpeed * Time.deltaTime;
+        targetPosition.x = Mathf.Lerp(targetPosition.x, targetPath * distanceBetweenPaths, Time.deltaTime * 5);
+        rb.MovePosition(targetPosition);
     }
     #endregion
 
