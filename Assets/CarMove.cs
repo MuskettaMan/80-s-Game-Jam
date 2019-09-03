@@ -35,17 +35,17 @@ public class CarMove : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKey(KeyCode.W) && !boosting) {
+        if ((Input.GetKey(KeyCode.W) || Input.GetButton("Fire7")) && !boosting) {
             currentSpeed = Mathf.Lerp(currentSpeed, acceleratedSpeed, Time.deltaTime * accelerationSpeed);
-        } else if (Input.GetKey(KeyCode.S) && !boosting) {
+        } else if ((Input.GetKey(KeyCode.S) || Input.GetButton("Fire6")) && !boosting) {
             currentSpeed = Mathf.Lerp(currentSpeed, deceleratedSpeed, Time.deltaTime * accelerationSpeed);
-        } else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !boosting) {
+        } else if ((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !boosting && !Input.GetButton("Fire7") && !Input.GetButton("Fire6"))) {
             currentSpeed = Mathf.Lerp(currentSpeed, defaultSpeed, Time.deltaTime * accelerationSpeed);
         }
 
         boostGauge = Mathf.Clamp01(boostGauge);
         boostGaugeUI.fillAmount = boostGauge;
-        if (Input.GetKeyDown(KeyCode.LeftShift) && boostGauge >= 1) {
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Fire2")) && boostGauge >= 1) {
             boosting = true;
         }
 
@@ -59,13 +59,13 @@ public class CarMove : MonoBehaviour {
             boostGauge += boostGaugeIncrease;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))) {
             rb.AddForce(Vector3.up * 300);
         }
 
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("Fire5")) {
             targetPath--;
-        } else if (Input.GetKeyDown(KeyCode.D)) {
+        } else if (Input.GetKeyDown(KeyCode.D) || Input.GetButtonDown("Fire4")) {
             targetPath++;
         }
 
