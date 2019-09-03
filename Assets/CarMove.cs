@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CarMove : MonoBehaviour {
     #region Public Fields
     public float boostGauge = 0.0f;
+    public float currentSpeed;
     #endregion
 
     #region Private Fields
@@ -16,7 +17,6 @@ public class CarMove : MonoBehaviour {
     [SerializeField] private float boostSpeed = 30;
     [SerializeField] private float boostGaugeIncrease = 0.1f;
     [SerializeField] private float boostGaugeDecrease = 0.1f;
-    [SerializeField] private float currentSpeed;
     [SerializeField] private float distanceBetweenPaths;
     [SerializeField] private Image boostGaugeUI;
 
