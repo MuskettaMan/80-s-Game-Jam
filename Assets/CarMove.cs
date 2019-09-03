@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : MonoBehaviour {
+public class CarMove : MonoBehaviour {
     #region Public Fields
     #endregion
 
@@ -33,6 +33,9 @@ public class Car : MonoBehaviour {
             currentSpeed = Mathf.Lerp(currentSpeed, defaultSpeed, Time.deltaTime * accelerationSpeed);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            rb.AddForce(Vector3.up * 300);
+        }
 
         if (Input.GetKeyDown(KeyCode.A)) {
             targetPath--;
