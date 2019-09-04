@@ -1645,11 +1645,11 @@ MonoBehaviour:
   boostGauge: 0
   currentSpeed: 0
   canMove: 1
-  defaultSpeed: 20
-  acceleratedSpeed: 30
-  deceleratedSpeed: 10
+  defaultSpeed: 30
+  acceleratedSpeed: 40
+  deceleratedSpeed: 20
   accelerationSpeed: 3
-  boostSpeed: 50
+  boostSpeed: 60
   boostGaugeIncrease: 0.001
   boostGaugeDecrease: 0.002
   distanceBetweenPaths: 3
@@ -2192,6 +2192,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2237,6 +2238,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2350,6 +2352,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2522,6 +2525,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2561,6 +2565,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

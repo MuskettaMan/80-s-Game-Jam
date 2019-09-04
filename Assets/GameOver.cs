@@ -24,6 +24,10 @@ public class GameOver : MonoBehaviour {
             Collided();
             gameOver = true;
         }
+
+        if (gameOver && Input.GetButtonDown("Fire1")) {
+            Restart();
+        }
     }
 
     public void Collided() {

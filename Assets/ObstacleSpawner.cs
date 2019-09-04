@@ -52,14 +52,14 @@ public class ObstacleSpawner : MonoBehaviour {
 
     private void InstantiateObstacle(bool twice) {
         var clone = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)]);
-        clone.transform.position = new Vector3(0, 0, spawnCounter * 100);
+        clone.transform.position = new Vector3(0, 0, car.transform.position.z + 100);
         int random = Random.Range(-1, 2);
         clone.transform.position += new Vector3(distanceBetweenPaths * random, .5f, 0);
         Destroy(clone, 60);
 
         if (twice) {
             var anotherClone = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)]);
-            anotherClone.transform.position = new Vector3(0, 0, spawnCounter * 100);
+            anotherClone.transform.position = new Vector3(0, 0, car.transform.position.z + 100);
             int anotherRandom;
             do {
                 anotherRandom = Random.Range(-1, 2);

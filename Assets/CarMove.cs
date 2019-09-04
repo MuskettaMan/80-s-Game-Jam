@@ -31,6 +31,7 @@ public class CarMove : MonoBehaviour {
     private float defaultFov;
     private float score = 0;
     private float scoreToDisplay = 0;
+    private bool isJumping = false;
     #endregion
 
     #region Unity Methods
@@ -70,9 +71,9 @@ public class CarMove : MonoBehaviour {
             boostGauge += boostGaugeIncrease;
         }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))) {
-            rb.AddForce(Vector3.up * 300);
-        }
+        //if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))) {
+        //    StartCoroutine(WaitForJump());
+        //}
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("Fire5")) {
             targetPath--;
@@ -98,5 +99,14 @@ public class CarMove : MonoBehaviour {
     #endregion
 
     #region Private Methods
+    private IEnumerator WaitForJump() {
+        if (isJumping) {
+            yield return new WaitForSeconds(1);
+            isJumping = false;
+        } else {
+            rb.AddForce(Vector3.up * 300);
+            isJumping = true;
+        }
+    }
     #endregion
 }
