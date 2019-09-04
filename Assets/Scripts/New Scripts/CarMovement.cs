@@ -9,7 +9,7 @@ public class CarMovement : MonoBehaviour {
         deceleratedSpeed,
         accelerationSpeed;
 
-    [SerializeField] private float currentSpeed, targetSpeed;
+    private float currentSpeed, targetSpeed;
 
     private Rigidbody rb;
 
@@ -44,6 +44,10 @@ public class CarMovement : MonoBehaviour {
                 targetSpeed = acceleratedSpeed;
                 break;
         }
+    }
+
+    public void SetTargetSpeed(float target) {
+        targetSpeed = target;
     }
 
 }

@@ -31,7 +31,6 @@ public class CarMove : MonoBehaviour {
     private float defaultFov;
     private float score = 0;
     private float scoreToDisplay = 0;
-    private bool isJumping = false;
     #endregion
 
     #region Unity Methods
