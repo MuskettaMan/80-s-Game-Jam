@@ -99,14 +99,5 @@ public class CarMove : MonoBehaviour {
     #endregion
 
     #region Private Methods
-    private IEnumerator WaitForJump() {
-        if (isJumping) {
-            yield return new WaitForSeconds(1);
-            isJumping = false;
-        } else {
-            rb.AddForce(Vector3.up * 300);
-            isJumping = true;
-        }
-    }
     #endregion
 }
