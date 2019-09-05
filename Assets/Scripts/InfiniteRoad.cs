@@ -9,30 +9,39 @@ public class InfiniteRoad : MonoBehaviour {
     #endregion
 
     #region Private Fields
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float roadLength = 200;
+    [SerializeField] private RoadFactory roadFactory;
+    [SerializeField] private float roadLength = 50;
     [SerializeField] private Transform followTarget;
-    private GameObject[] pool = new GameObject[2];
+    [SerializeField] private float loadedRoads;
+
+    private List<Road> spawnedRoads = new List<Road>();
     #endregion
 
     #region Unity Methods
     void Start() {
-        for (int i = 0; i < pool.Length; i++) {
-            var clone = Instantiate(prefab);
-            clone.transform.position += new Vector3(0, 0, roadLength * i);
-            clone.GetComponent<RoadMeshCreator>().GameUpdate();
-            pool[i] = clone;
+        for (int i = (int)(loadedRoads / 2 - loadedRoads); i < (int)loadedRoads / 2; i++) {
+            Road road = roadFactory.Get();
+            road.name = "Road " + i;
+            road.transform.position = new Vector3(0, 0, i * roadLength);
+            spawnedRoads.Add(road);
         }
     }
 
     void Update() {
-        for (int i = 0; i < pool.Length; i++) {
-            if (Vector3.Distance(pool[i].transform.position, followTarget.position) > 205 && (pool[i].transform.position.z - followTarget.position.z) < 0) {
-                pool[i].transform.position += new Vector3(0, 0, roadLength * pool.Length);
+        for (int i = 0; i < spawnedRoads.Count; i++) {
+            if (Vector3.Distance(spawnedRoads[i].transform.position, followTarget.position) > (loadedRoads / 2) * roadLength) {
+                roadFactory.Reclaim(spawnedRoads[i]);
 
-                pool[i].GetComponent<RoadMeshCreator>().GameUpdate();
+                Road road = roadFactory.Get();
+                road.transform.position = new Vector3(0, 0, spawnedRoads[i].transform.position.z + loadedRoads * roadLength);
+                spawnedRoads[i] = road;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(followTarget.position, (loadedRoads / 2) * roadLength);
     }
     #endregion
 

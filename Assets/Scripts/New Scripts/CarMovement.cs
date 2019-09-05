@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,13 @@ public class CarMovement : MonoBehaviour {
         deceleratedSpeed,
         accelerationSpeed;
 
-    private float currentSpeed, targetSpeed;
+    public float CurrentSpeed {
+        get; private set;
+    }
+
+    public float TargetSpeed {
+        get; private set;
+    }
 
     private Rigidbody rb;
 
@@ -27,27 +34,27 @@ public class CarMovement : MonoBehaviour {
 
     private void Move() {
 
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * accelerationSpeed);
+        CurrentSpeed = Mathf.Lerp(CurrentSpeed, TargetSpeed, Time.deltaTime * accelerationSpeed);
 
-        rb.MovePosition(rb.position + new Vector3(0, 0, currentSpeed * Time.deltaTime));
+        rb.MovePosition(rb.position + new Vector3(0, 0, CurrentSpeed * Time.deltaTime));
     }
 
     private void OnVerticalAxis(float axis) {
         switch (axis) {
             case 0:
-                targetSpeed = defaultSpeed;
+                TargetSpeed = defaultSpeed;
                 break;
             case float val when val < 0:
-                targetSpeed = deceleratedSpeed;
+                TargetSpeed = deceleratedSpeed;
                 break;
             case float val when val > 0:
-                targetSpeed = acceleratedSpeed;
+                TargetSpeed = acceleratedSpeed;
                 break;
         }
     }
 
     public void SetTargetSpeed(float target) {
-        targetSpeed = target;
+        TargetSpeed = target;
     }
 
 }

@@ -10,7 +10,7 @@ public class WheelRotater : MonoBehaviour {
     private float radius;
     private float speed;
 
-    [SerializeField] private CarMove car;
+    [SerializeField] private CarMovement car;
     private Vector3 angles;
     #endregion
 
@@ -21,7 +21,7 @@ public class WheelRotater : MonoBehaviour {
     }
 
     void Update() {
-        speed = car.currentSpeed;
+        speed = car.CurrentSpeed;
         angles.x += speed / radius;
 
         transform.eulerAngles = angles;

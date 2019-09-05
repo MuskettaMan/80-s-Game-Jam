@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenFader: {fileID: 0}
   textFader: {fileID: 0}
-  car: {fileID: 58347901561989085}
+  car: {fileID: 0}
   turnMeOn:
   - {fileID: 0}
   - {fileID: 0}
@@ -163,10 +163,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 58347901561989084}
-  - component: {fileID: 58347901561989085}
   - component: {fileID: 58347901561989086}
   - component: {fileID: 58347901561989087}
   - component: {fileID: 58347901561989081}
+  - component: {fileID: 6448860339467084286}
+  - component: {fileID: 5596084170967068963}
+  - component: {fileID: 6476157663295397953}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -192,31 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &58347901561989085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58347901561989090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbfea5c623383974c8c2a5ff1b321d8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boostGauge: 0
-  currentSpeed: 0
-  canMove: 1
-  defaultSpeed: 30
-  acceleratedSpeed: 40
-  deceleratedSpeed: 20
-  accelerationSpeed: 3
-  boostSpeed: 60
-  boostGaugeIncrease: 0.001
-  boostGaugeDecrease: 0.002
-  distanceBetweenPaths: 3
-  boostGaugeUI: {fileID: 0}
-  scoreText: {fileID: 0}
 --- !u!54 &58347901561989086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -260,6 +237,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleTag: Obstacle
   gameOver: {fileID: 58347900864735763}
+--- !u!114 &6448860339467084286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58347901561989090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05e0552fdd2d48449a55387d27c8696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSpeed: 0
+  acceleratedSpeed: 0
+  deceleratedSpeed: 0
+  accelerationSpeed: 0
+  inputManager: {fileID: 0}
+--- !u!114 &5596084170967068963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58347901561989090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c66b5dbe3e591547b35c623fad352b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBetweenPaths: 0
+  pathChangeSpeed: 0
+  inputManager: {fileID: 0}
+--- !u!114 &6476157663295397953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58347901561989090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095954d4fee1bcb4c9c28bb4bcd545af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostSpeed: 0
+  boostGaugeIncrease: 0
+  boostGaugeDecrease: 0
+  inputManager: {fileID: 0}
 --- !u!1 &58347901578499145
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d00c06198275ec4689ba8efdcba91cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 58347901561989085}
+  car: {fileID: 0}
 --- !u!1 &1654073306198679166
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d00c06198275ec4689ba8efdcba91cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 58347901561989085}
+  car: {fileID: 0}
 --- !u!1 &4469149950622516958
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d00c06198275ec4689ba8efdcba91cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 58347901561989085}
+  car: {fileID: 0}
 --- !u!1 &8353796933989604506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,4 +1025,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d00c06198275ec4689ba8efdcba91cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 58347901561989085}
+  car: {fileID: 0}

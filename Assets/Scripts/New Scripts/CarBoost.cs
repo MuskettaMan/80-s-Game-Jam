@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,12 @@ public class CarBoost : MonoBehaviour {
     [SerializeField] private float boostGaugeDecrease;
     [SerializeField] private InputManager inputManager;
 
-    private float boostGauge = 0;
+    public Action boostStart;
+    public Action boostEnd;
+
+    public float BoostGauge {
+        get; private set;
+    } = 0;
 
     public bool Boosting {
         get; private set;
@@ -26,19 +32,25 @@ public class CarBoost : MonoBehaviour {
     private void Update() {
         if (Boosting) {
             carMovement.SetTargetSpeed(boostSpeed);
-            boostGauge -= boostGaugeDecrease;
+            BoostGauge -= boostGaugeDecrease;
+            BoostGauge = Mathf.Clamp01(BoostGauge);
 
-            Boosting = boostGauge > 0;
+            Boosting = BoostGauge > 0;
+            if (BoostGauge <= 0) {
+                Boosting = false;
+                boostEnd?.Invoke();
+            }
         } else {
-            boostGauge += boostGaugeIncrease;
+            BoostGauge += boostGaugeIncrease;
+            BoostGauge = Mathf.Clamp01(BoostGauge);
         }
         
-        boostGauge = Mathf.Clamp01(boostGauge);
     }
 
     private void OnBoostButtonDown() {
-        if (boostGauge >= 1) {
+        if (BoostGauge >= 1) {
             Boosting = true;
+            boostStart?.Invoke();
         }
     }
 
