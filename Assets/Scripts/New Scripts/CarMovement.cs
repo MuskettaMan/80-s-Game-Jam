@@ -18,6 +18,10 @@ public class CarMovement : MonoBehaviour {
         get; private set;
     }
 
+    public float DistanceTraveled {
+        get; private set;
+    }
+
     private Rigidbody rb;
 
     [SerializeField] private InputManager inputManager;
@@ -29,7 +33,8 @@ public class CarMovement : MonoBehaviour {
     }
 
     private void Update() {
-        Move();    
+        Move();
+        DistanceTraveled = transform.position.z;
     }
 
     private void Move() {

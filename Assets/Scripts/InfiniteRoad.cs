@@ -29,13 +29,14 @@ public class InfiniteRoad : MonoBehaviour {
 
     void Update() {
         for (int i = 0; i < spawnedRoads.Count; i++) {
-            if (Vector3.Distance(spawnedRoads[i].transform.position, followTarget.position) > (loadedRoads / 2) * roadLength) {
+            if (Vector3.Distance(spawnedRoads[i].transform.position, followTarget.position) > (loadedRoads / 2) * roadLength && spawnedRoads[i].transform.position.z - followTarget.position.z < 0) {
                 roadFactory.Reclaim(spawnedRoads[i]);
 
                 Road road = roadFactory.Get();
                 road.transform.position = new Vector3(0, 0, spawnedRoads[i].transform.position.z + loadedRoads * roadLength);
                 spawnedRoads[i] = road;
             }
+
         }
     }
 
