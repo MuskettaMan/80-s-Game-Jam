@@ -7,49 +7,19 @@ using TMPro;
 
 public class GameOver : MonoBehaviour {
 
-    [SerializeField] private ScreenFader screenFader;
-    [SerializeField] private ScreenFader textFader;
-    [SerializeField] private CarMove car;
-    [SerializeField] private List<GameObject> turnMeOn = new List<GameObject>();
-
-    private bool gameOver = false;
-    private float a;
-
-    private void Start() {
-        textFader.gameObject.SetActive(false);
-    }
-
-    private void Update() {
-        if (Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.R) && !gameOver) {
-            Collided();
-            gameOver = true;
-        }
-
-        if (gameOver && Input.GetButtonDown("Fire1")) {
-            Restart();
-        }
-    }
+    [SerializeField] private CarMovement car;
+    [SerializeField] private CarSideMovement carSide;
 
     public void Collided() {
-        car.canMove = false;
+        car.enabled = false;
+        carSide.enabled = false;
         Camera.main.fieldOfView = 60;
-        screenFader.FadeOut();
-        StartCoroutine(WaitForScreenFade());
+        StartCoroutine(Restart());
     }
 
-    public void Restart() {
+    public IEnumerator Restart() {
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(0);
-    }
-
-    private IEnumerator WaitForScreenFade() {
-        yield return new WaitForSeconds(1);
-        foreach (GameObject go in turnMeOn) {
-            go.SetActive(true);
-        }
-        textFader.gameObject.SetActive(true);
-        textFader.FadeIn();
-        yield return new WaitForSeconds(1);
-        textFader.gameObject.SetActive(false);
     }
 
 }
